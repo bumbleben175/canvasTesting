@@ -33,16 +33,16 @@ var makePlayer = function(width,height,color,x,y){
     this.speedY = 0;
     this.controls = {
     	moveUp: function(){
-    		setInterval(function(){this.speedY=-1;bobby.move();this.speedY=0;},250);
+    		this.speedY=-1;bobby.move();this.speedY=0;
     	},
 	moveDown: function(){
-    		setInterval(function(){this.speedY=1;bobby.move();this.speedY=0;},250);
+    		this.speedY=1;bobby.move();this.speedY=0;
     	},
 	moveUp: function(){
-    		setInterval(function(){this.speedY=-1;bobby.move();this.speedY=0;},250);
+    		this.speedY=-1;bobby.move();this.speedY=0;
     	},
 	moveUp: function(){
-    		setInterval(function(){this.speedY=-1;bobby.move();this.speedY=0;},250);
+    		this.speedY=-1;bobby.move();this.speedY=0;
     	}
     }
     //update & draw functions
