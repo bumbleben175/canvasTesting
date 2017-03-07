@@ -34,14 +34,27 @@ var makePlayer = function(width,height,color,x,y){
     this.controls = {
     	moveUp: function(){
     		setInterval(function(){this.speedY=-1;bobby.move();this.speedY=0;},250);
+    	},
+	moveDown: function(){
+    		setInterval(function(){this.speedY=1;bobby.move();this.speedY=0;},250);
+    	},
+	moveUp: function(){
+    		setInterval(function(){this.speedY=-1;bobby.move();this.speedY=0;},250);
+    	},
+	moveUp: function(){
+    		setInterval(function(){this.speedY=-1;bobby.move();this.speedY=0;},250);
     	}
     }
     //update & draw functions
 	this.update = function(){
-        ctx = myGameArea.context;
-        ctx.fillStyle = color;
-        ctx.fillRect((this.x-1)*(this.width-1), (this.y-1)*(this.height-1), (myGameArea.canvas.width/this.width), (myGameArea.canvas.height/this.height));
-    }
+		if (myGameArea.key && myGameArea.key == 37) {this.controls.moveLeft}
+		if (myGameArea.key && myGameArea.key == 39) {this.controls.moveUp}
+		if (myGameArea.key && myGameArea.key == 38) {this.controls.moveRight}
+		if (myGameArea.key && myGameArea.key == 40) {this.controls.moveDown}
+		ctx = myGameArea.context;
+		ctx.fillStyle = color;
+		ctx.fillRect((this.x-1)*(this.width-1), (this.y-1)*(this.height-1), (myGameArea.canvas.width/this.width), (myGameArea.canvas.height/this.height));
+	}
     this.move = function(){
     	this.x+=this.speedX;
     	this.y+=this.speedY;
@@ -58,6 +71,12 @@ var myGameArea = {
 		this.context = this.canvas.getContext("2d");
 		document.body.insertBefore(this.canvas, document.body.childNodes[0]);
 		this.interval = setInterval(updateGameArea, 20);
+		window.addEventListener('keydown', function (e) {
+			myGameArea.key = e.keyCode;
+		})
+		window.addEventListener('keyup', function (e) {
+			myGameArea.key = false;
+		})
 	},
 	clear: function() {
 		this.context.clearRect(0,0,this.canvas.width,this.canvas.height)
